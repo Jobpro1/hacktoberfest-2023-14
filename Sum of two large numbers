@@ -1,0 +1,40 @@
+Given two strings denoting non-negative numbers X and Y. Calculate the sum of X and Y.
+
+
+Example 1:
+
+Input:
+X = "25", Y = "23"
+Output:
+48
+Explanation:
+The sum of 25 and 23 is 48.
+
+
+
+
+def addStrings(X, Y):
+    max_len = max(len(X), len(Y))
+    X = X.zfill(max_len)
+    Y = Y.zfill(max_len)
+    
+    carry = 0
+    result = []
+    
+    for i in range(max_len - 1, -1, -1):
+        digit_X = int(X[i])
+        digit_Y = int(Y[i])
+        total = digit_X + digit_Y + carry
+        carry = total // 10
+        result.append(str(total % 10))
+    
+    if carry > 0:
+        result.append(str(carry))
+    
+    return ''.join(result)
+
+# Example usage
+X = "25"
+Y = "23"
+result = addStrings(X, Y)
+print(int(result))  # Convert the result back to an integer for clarity
